@@ -15,7 +15,14 @@ public class VectorTest {
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(1);
 		vector.add(4);
-		Assert.assertEquals(0, testVector.setVector(null));
+		testVector.setVector(vector);
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void NewEmptyVectorCreating(){
+		Vectorimpl testVector = new Vectorimpl();
+		List<Integer> emptyVector = new ArrayList<Integer>(); 
+		Assert.assertEquals(0, testVector.setVector(emptyVector));
 	}
 	
 	@Test(expected = RuntimeException.class)
