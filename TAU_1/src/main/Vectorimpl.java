@@ -11,7 +11,6 @@ public class Vectorimpl implements Vector {
 		
 	}
 	
-	@Override
 	public Vector add(Vector a) {
 		if(this.vectorSize != a.getVector().size()){
 			 throw new RuntimeException("Vectors have different sizes");
@@ -43,14 +42,20 @@ public class Vectorimpl implements Vector {
 		return c;		
 	}
 
-	public void setVector(List<Integer> a){
-		this.vectorSize = a.size();
-		for(int i=1; i<=a.size(); i++){
-			this.vector.set(i, a.get(i));
-		}	
+	public Vector setVector(List<Integer> a){
+		
+		if(a.isEmpty()){
+			throw new RuntimeException("Emppty List");
+		}else{
+			
+			this.vectorSize = a.size();
+			for(int i=1; i<=a.size(); i++){
+				this.vector.set(i, a.get(i));
+			}	
+		}
+		return this;
 	}
 
-	@Override
 	public List<Integer> getVector() {
 		List<Integer> result = new ArrayList<Integer>();
 		result = new ArrayList<Integer>(this.vector);

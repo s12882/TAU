@@ -2,6 +2,8 @@ package testPackage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Test;
 import main.Vectorimpl;
 
@@ -13,7 +15,7 @@ public class VectorTest {
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(1);
 		vector.add(4);
-		testVector.setVector(vector);
+		Assert.assertEquals(0, testVector.setVector(null));
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -32,7 +34,8 @@ public class VectorTest {
 		testVector.setVector(vector);
 		testVector1.setVector(vector1);
 		
-		testVector.add(testVector1);		
+		testVector.add(testVector1);	
+		Assert.assertTrue(true);
 	}
 	
 	@Test(expected = RuntimeException.class)
