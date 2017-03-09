@@ -1,34 +1,31 @@
-package testPackage;
+package pl.edu.pjwstk.lab2.lab2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
-import main.Vectorimpl;
+import junit.framework.Assert;
+import junit.framework.Test;
+import junit.framework.TestCase;
 
 public class VectorTest {
 
-	@Test
 	public void New2ElementsVectorCreatingNoException(){
-		Vectorimpl testVector = new Vectorimpl();
+		VectorImpl testVector = new VectorImpl();
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(1);
 		vector.add(4);
 		testVector.setVector(vector);
 	}
 	
-	@Test(expected = RuntimeException.class)
 	public void NewEmptyVectorCreatingExceptionThrown(){
-		Vectorimpl testVector = new Vectorimpl();
+		VectorImpl testVector = new VectorImpl();
 		List<Integer> emptyVector = new ArrayList<Integer>(); 
 		testVector.setVector(emptyVector);
 	}
-	
-	@Test(expected = RuntimeException.class)
+		
 	public void addVectorToCurrent(){
-		Vectorimpl testVector = new Vectorimpl();
-		Vectorimpl testVector1 = new Vectorimpl();
+		VectorImpl testVector = new VectorImpl();
+		VectorImpl testVector1 = new VectorImpl();
 		
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(2);
@@ -45,10 +42,9 @@ public class VectorTest {
 		
 	}
 	
-	@Test(expected = RuntimeException.class)
 	public void addVectorToCurrentWithDifferentSizes(){
-		Vectorimpl testVector = new Vectorimpl();
-		Vectorimpl testVector1 = new Vectorimpl();
+		VectorImpl testVector = new VectorImpl();
+		VectorImpl testVector1 = new VectorImpl();
 		
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(2);
@@ -65,11 +61,10 @@ public class VectorTest {
 		testVector.add(testVector1);		
 	}
 	
-	@Test(expected = RuntimeException.class) 
 	public void addTwoVectors(){
-		Vectorimpl testVector = new Vectorimpl();
-		Vectorimpl testVector1 = new Vectorimpl();
-		Vectorimpl testVectorResult = new Vectorimpl();
+		VectorImpl testVector = new VectorImpl();
+		VectorImpl testVector1 = new VectorImpl();
+		VectorImpl testVectorResult = new VectorImpl();
 		
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(2);
@@ -85,15 +80,14 @@ public class VectorTest {
 		testVectorResult.addVectors(testVector, testVector1);	
 	}
 	
-	@Test
 	public void getVector(){
-		Vectorimpl testVector = new Vectorimpl();		
+		VectorImpl testVector = new VectorImpl();		
 		List<Integer> vector = new ArrayList<Integer>(); 
 		
 		vector.add(2);
 		vector.add(6);
 		
-		testVector.setVectorVoid(vector);
+		testVector.setVector(vector);
 		testVector.getVector();
 		
 	}

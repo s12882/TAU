@@ -7,6 +7,11 @@ public class Vectorimpl implements Vector {
 	public int vectorSize;
 	public ArrayList<Integer> vector;
 
+	public Vectorimpl(int vectorSize,  ArrayList<Integer> vector ){
+		this.vectorSize = vectorSize;
+		this.vector = vector;
+	}
+	
 	public Vectorimpl(){
 		
 	}
@@ -43,22 +48,35 @@ public class Vectorimpl implements Vector {
 	}
 
 	public Vector setVector(List<Integer> a){
-		
-		if(a.isEmpty()){
+	
+		ArrayList<Integer> result = new ArrayList<Integer>(a);
+		if(result.isEmpty()){
 			throw new RuntimeException("Emppty List");
 		}else{
-			
-			this.vectorSize = a.size();
-			for(int i=1; i<=a.size(); i++){
-				this.vector.set(i, a.get(i));
-			}	
-		}
-		return this;
+			Vectorimpl vect = new Vectorimpl(result.size(), result);		
+			return vect;	
+		}		
+	}
+	
+	public void setVectorVoid(List<Integer> a){
+		
+		ArrayList<Integer> result = new ArrayList<Integer>(a);
+		if(result.isEmpty()){
+			throw new RuntimeException("Emppty List");
+		}else{
+			this.vectorSize = result.size();
+			this.vector = result;							
+		}		
 	}
 
 	public List<Integer> getVector() {
-		List<Integer> result = new ArrayList<Integer>();
-		result = new ArrayList<Integer>(this.vector);
+		ArrayList<Integer> result = new ArrayList<Integer>(vector);
+		return result;
+	}
+	
+	public List<Integer> getVectorBy(Vectorimpl v) {
+		System.out.println(v.vector.size());
+		ArrayList<Integer> result = new ArrayList<Integer>(v.vector);
 		return result;
 	}
 	
