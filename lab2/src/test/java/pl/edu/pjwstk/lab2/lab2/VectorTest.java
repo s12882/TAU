@@ -99,6 +99,45 @@ public class VectorTest {
 		testVectorResult.addVectors(testVector, testVector1);	
 	}
 	
+	public void subVectorFromCurrent(){
+		
+		VectorImpl testVector = new VectorImpl();
+		VectorImpl testVector1 = new VectorImpl();
+		
+		List<Integer> list = new ArrayList<Integer>(); 
+		list.add(2);
+		list.add(6);
+		
+		List<Integer> list1 = new ArrayList<Integer>(); 
+		list1.add(5);
+		list1.add(1);
+		
+		testVector.setVector(list);
+		testVector1.setVector(list1);
+		
+		testVector.sub(testVector1);		
+	}
+	
+public void subVectorFromCurrentDefferentSizesExceptionThrown(){
+		
+		VectorImpl testVector = new VectorImpl();
+		VectorImpl testVector1 = new VectorImpl();
+		
+		List<Integer> list = new ArrayList<Integer>(); 
+		list.add(2);
+		list.add(6);
+		
+		List<Integer> list1 = new ArrayList<Integer>(); 
+		list1.add(5);
+		list1.add(1);
+		list1.add(3);
+		
+		testVector.setVector(list);
+		testVector1.setVector(list1);
+		
+		testVector.sub(testVector1);		
+	}
+	
 	public void getVector(){
 		VectorImpl testVector = new VectorImpl();		
 		List<Integer> list = new ArrayList<Integer>(); 

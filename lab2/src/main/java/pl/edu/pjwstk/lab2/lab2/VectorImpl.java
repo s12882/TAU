@@ -76,4 +76,14 @@ public class VectorImpl implements Vector {
 		return result;
 	}
 
+	public void sub(Vector a) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Vector subVectors(Vector a, Vector b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
