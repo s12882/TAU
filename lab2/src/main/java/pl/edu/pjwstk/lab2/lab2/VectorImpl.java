@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class VectorImpl  implements Vector {
+public class VectorImpl implements Vector {
 	
 	public int vectorSize;
 	public ArrayList<Integer> vector;
@@ -54,7 +54,11 @@ public class VectorImpl  implements Vector {
 
 		ArrayList<Integer> result = new ArrayList<Integer>(a);
 		if(result.isEmpty()){
-			throw new RuntimeException("Emppty List");
+			ArrayList<Integer> zeroVector = new ArrayList<Integer>(a);
+			zeroVector.add(0, 0);
+			zeroVector.add(1, 0);
+			this.vectorSize = zeroVector.size();
+			this.vector = zeroVector;	
 		}else{
 			this.vectorSize = result.size();
 			this.vector = result;							
@@ -62,8 +66,14 @@ public class VectorImpl  implements Vector {
 	}
 
 	public List<Integer> getVector() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Integer> result = new ArrayList<Integer>(vector);
+		return result;
+	}
+
+	public List<Integer> getVectorBy(VectorImpl a) {
+		System.out.println(a.vector.size());
+		ArrayList<Integer> result = new ArrayList<Integer>(a.vector);
+		return result;
 	}
 
 }

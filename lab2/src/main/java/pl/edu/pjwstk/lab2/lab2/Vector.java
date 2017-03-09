@@ -7,6 +7,7 @@ public interface Vector {
 	public void add(Vector a);
 	public Vector addVectors(Vector a, Vector b);
 	public void setVector(List<Integer> a);
-    public List<Integer> getVector();	
-
+	public List<Integer> getVector();	
+    public List<Integer> getVectorBy(VectorImpl a);	
+   
 }
