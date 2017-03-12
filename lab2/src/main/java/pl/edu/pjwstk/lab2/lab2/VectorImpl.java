@@ -20,13 +20,7 @@ public class VectorImpl implements Vector {
 
 	public void add(Vector a) {
 		
-		int size1 = a.getVector().size();
-		int size2 = this.vectorSize;
-		
-		System.out.println("first " + size1 );
-		System.out.println("second " + size2 );
-
-		if(size1 != size2){
+		if(this.vectorSize != a.getVector().size()){
 			 throw new RuntimeException("Vectors have different sizes");
 		}else{
 			for(int i=0; i<this.vectorSize; i++){
@@ -80,13 +74,37 @@ public class VectorImpl implements Vector {
 	}
 
 	public void sub(Vector a) {
-		// TODO Auto-generated method stub
+		
+		if(this.vectorSize != a.getVector().size()){
+			 throw new RuntimeException("Vectors have different sizes");
+		}else{
+			for(int i=0; i<this.vectorSize; i++){
+				int value1 = this.vector.get(i);
+				int value2 = a.getVector().get(i);
+				int result = value1 - value2;
+				this.vector.set(i, result);
+			}	
+		}
 		
 	}
 
 	public Vector subVectors(Vector a, Vector b) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Vector c = new VectorImpl();
+		List<Integer> vectorC = new ArrayList<Integer>();
+		
+		if(a.getVector().size() != b.getVector().size()){
+			 throw new RuntimeException("Vectors have different sizes");
+		}else{	
+			for(int i=0; i<a.getVector().size(); i++){
+				int first = a.getVector().get(i); 
+				int second = b.getVector().get(i);
+				int value = first - second ;
+				vectorC.add(i, value);
+			}	
+			c.setVector(vectorC);
+		}
+		return c;
 	}
 
 }
