@@ -20,14 +20,19 @@ public class VectorImpl implements Vector {
 
 	public void add(Vector a) {
 		
-		if(this.vectorSize != a.getVector().size()){
+		int size1 = a.getVector().size();
+		int size2 = this.vectorSize;
+		
+		System.out.println("first " + size1 );
+		System.out.println("second " + size2 );
+
+		if(size1 != size2){
 			 throw new RuntimeException("Vectors have different sizes");
 		}else{
-		
 			for(int i=0; i<this.vectorSize; i++){
 				int value1 = this.vector.get(i);
 				int value2 = a.getVector().get(i);
-				int result = value1+value2;
+				int result = value1 + value2;
 				this.vector.set(i, result);
 			}	
 		}
@@ -42,8 +47,10 @@ public class VectorImpl implements Vector {
 			 throw new RuntimeException("Vectors have different sizes");
 		}else{	
 			for(int i=0; i<a.getVector().size(); i++){
-				int value = a.getVector().get(i) + b.getVector().get(i);
-				vectorC.set(i, value);
+				int first = a.getVector().get(i); 
+				int second = b.getVector().get(i);
+				int value = first + second ;
+				vectorC.add(i, value);
 			}	
 			c.setVector(vectorC);
 		}
@@ -53,12 +60,8 @@ public class VectorImpl implements Vector {
 	public void setVector(List<Integer> a) {
 
 		ArrayList<Integer> result = new ArrayList<Integer>(a);
-		if(result.isEmpty()){
-			ArrayList<Integer> zeroVector = new ArrayList<Integer>(a);
-			zeroVector.add(0, 0);
-			zeroVector.add(1, 0);
-			this.vectorSize = zeroVector.size();
-			this.vector = zeroVector;	
+		if(a.isEmpty()){
+			throw new RuntimeException("Empty list");
 		}else{
 			this.vectorSize = result.size();
 			this.vector = result;							
