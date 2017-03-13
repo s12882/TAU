@@ -77,20 +77,21 @@ public class VectorTest{
 		VectorImpl testVector1 = new VectorImpl();
 		Vector testVectorResult = new VectorImpl();
 		
-		List<Integer> vector = new ArrayList<Integer>(); 
-		vector.add(2);
-		vector.add(6);
+		List<Integer> list = new ArrayList<Integer>(); 
+		list.add(3);
+		list.add(6);
 		
-		List<Integer> vector1 = new ArrayList<Integer>(); 
-		vector1.add(5);
-		vector1.add(1);
+		List<Integer> list1 = new ArrayList<Integer>(); 
+		list1.add(5);
+		list1.add(1);
 		
-		testVector.setVector(vector);
-		testVector1.setVector(vector1);
+		testVector.setVector(list);
+		testVector1.setVector(list1);
 		
-		assertTrue(testVector.getVector().size() == testVector1.getVector().size());
 		testVectorResult = testVectorResult.addVectors(testVector, testVector1);	
-		assertFalse(testVectorResult.getVector().isEmpty());
+		assertTrue(testVectorResult.getVector().get(0) == (list.get(0)+list1.get(0)) 
+				&& testVectorResult.getVector().get(1) == (list.get(1)+list1.get(1)));
+				
 	}
 	
 	@Test(expected = RuntimeException.class)
