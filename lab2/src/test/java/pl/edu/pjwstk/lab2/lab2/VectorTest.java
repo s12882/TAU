@@ -5,14 +5,13 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.runner.RunWith;
-import org.junit.Test;
-import org.junit.Ignore;
+
 import junit.framework.Assert;
+import org.junit.Test;
 import junit.framework.TestCase;
 
 
-public class VectorTest {
+public class VectorTest{
 
 	@Test
 	public void New2ElementsVectorCreating(){
@@ -20,8 +19,8 @@ public class VectorTest {
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(1);
 		vector.add(4);
-		assertNotNull(vector);
 		testVector.setVector(vector);
+		assertFalse(testVector.getVector().isEmpty());
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -29,6 +28,7 @@ public class VectorTest {
 		VectorImpl testVector = new VectorImpl();
 		List<Integer> emptyList = new ArrayList<Integer>(); 
 		testVector.setVector(emptyList);
+		assertTrue(testVector.getVector().isEmpty());
 	}
 	
 	@Test
@@ -48,6 +48,7 @@ public class VectorTest {
 		testVector1.setVector(list1);
 		
 		testVector.add(testVector1);	
+		assertFalse(testVector.getVector().isEmpty());
 		
 	}
 	
@@ -74,7 +75,7 @@ public class VectorTest {
 	public void addTwoVectors(){
 		VectorImpl testVector = new VectorImpl();
 		VectorImpl testVector1 = new VectorImpl();
-		VectorImpl testVectorResult = new VectorImpl();
+		Vector testVectorResult = new VectorImpl();
 		
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(2);
@@ -87,14 +88,16 @@ public class VectorTest {
 		testVector.setVector(vector);
 		testVector1.setVector(vector1);
 		
-		testVectorResult.addVectors(testVector, testVector1);	
+		assertTrue(testVector.getVector().size() == testVector1.getVector().size());
+		testVectorResult = testVectorResult.addVectors(testVector, testVector1);	
+		assertFalse(testVectorResult.getVector().isEmpty());
 	}
 	
 	@Test(expected = RuntimeException.class)
 	public void addTwoVectorsWithDefferentSizesExceptionThrown(){
 		VectorImpl testVector = new VectorImpl();
 		VectorImpl testVector1 = new VectorImpl();
-		VectorImpl testVectorResult = new VectorImpl();
+		Vector testVectorResult = new VectorImpl();
 		
 		List<Integer> list = new ArrayList<Integer>(); 
 		list.add(2);
@@ -108,7 +111,9 @@ public class VectorTest {
 		testVector.setVector(list);
 		testVector1.setVector(list1);
 		
-		testVectorResult.addVectors(testVector, testVector1);	
+		assertFalse(testVector.getVector().size() == testVector1.getVector().size());
+		testVectorResult = testVectorResult.addVectors(testVector, testVector1);
+		assertTrue(testVectorResult.getVector().isEmpty());
 	}
 	
 	@Test
@@ -126,9 +131,13 @@ public class VectorTest {
 		list1.add(1);
 		
 		testVector.setVector(list);
-		testVector1.setVector(list1);
+		assertFalse(testVector.getVector().isEmpty());
 		
-		testVector.sub(testVector1);		
+		testVector1.setVector(list1);
+		assertFalse(testVector1.getVector().isEmpty());
+		
+		testVector.sub(testVector1);
+		assertFalse(testVector.getVector().isEmpty());
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -169,6 +178,7 @@ public class VectorTest {
 		testVector.setVector(vector);
 		testVector1.setVector(vector1);
 	
+		assert(testVector.getVector().size() == testVector1.getVector().size());
 		testVectorResult.subVectors(testVector, testVector1);	
 	}
 
