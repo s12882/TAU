@@ -63,7 +63,7 @@ public class VectorTest{
 		list1.add(5);
 		list1.add(1);
 		list1.add(7);
-		list1.add(9);
+		list1.add(1);
 		
 		VectorImpl testVector = new VectorImpl(2, list);
 		VectorImpl testVector1 = new VectorImpl(4, list1);
