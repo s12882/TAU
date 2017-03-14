@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 public class VectorTest{
 
 	@Test
-	public void New2ElementsVectorCreating(){
+	public void new2ElementsVectorCreating(){
 		VectorImpl testVector = new VectorImpl();
 		List<Integer> vector = new ArrayList<Integer>(); 
 		vector.add(1);
@@ -24,7 +24,8 @@ public class VectorTest{
 	}
 	
 	@Test(expected = RuntimeException.class)
-	public void NewEmptyVectorCreatingExceptionThrown(){
+	public void newEmptyVectorCreatingExceptionThrown(){
+		
 		VectorImpl testVector = new VectorImpl();
 		List<Integer> emptyList = new ArrayList<Integer>(); 
 		testVector.setVector(emptyList);
@@ -48,7 +49,8 @@ public class VectorTest{
 		testVector1.setVector(list1);
 		
 		testVector.add(testVector1);	
-		assertFalse(testVector.getVector().isEmpty());
+		assertTrue(testVector.getVector().get(0) == (list.get(0)+list1.get(0)) 
+				&& testVector.getVector().get(1) == (list.get(1)+list1.get(1)));
 		
 	}
 	
@@ -215,7 +217,8 @@ public class VectorTest{
 		list.add(6);
 		
 		testVector.setVector(list);
-		resultlist = testVector.getVector();		
+		resultlist = testVector.getVector();	
+		assertTrue(resultlist.get(0) == list.get(0) && resultlist.get(1) == list.get(1));
 	}
 
 }
