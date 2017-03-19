@@ -7,62 +7,43 @@ import java.util.Calendar;
 
 public class AlarmRingImpl implements AlarmRing  {
 	
-	public ArrayList<Integer> HourToRing;
-	public ArrayList<Integer> MinuteToRing;
 	private boolean State = true;
+	public ArrayList<Time> timesToRing;
 	
 	
 	public AlarmRingImpl(){
 		
 	}
 	
-    public AlarmRingImpl(ArrayList<Integer> HourToRing, ArrayList<Integer> MinuteToRing ){
-		this.HourToRing = HourToRing;
-		this.MinuteToRing = MinuteToRing;
+    public AlarmRingImpl(ArrayList<Time> time){
+		this.timesToRing = time;
 	}
 	
-	public boolean shouldRing(int currentHour, int currentMinute) {
+	public boolean shouldRing(Time currentTime) {
 		
-		if(currentHour>23 || currentMinute>60 || currentMinute<0 || currentHour<0){
-			throw new RuntimeException("Out of range");
-		}
-			
-			for(int hour : HourToRing)
+
+		for(Time time : timesToRing)
 			{
-				if(hour == currentHour){
+				if(time == currentTime){
 					
-					for(int minute : MinuteToRing){
-						
-						if(minute == currentMinute){
-				 
-							if(State == true){
-								State = false;
-								return true;
-							}else{
-								return false;
-							}
+						if(State == true){
+							State = false;
+							return true;
+						}else{
+							return false;
 						}
-					}
 				}
 			}
 			State = true;
 	return false;							
 	}
 	
-	public void addAlarmTime(int Hour, int Minute){
-		if(Hour>23 || Minute>60 || Minute<0 || Hour<0){
-			throw new RuntimeException("Out of range");
-		}
-		this.HourToRing.add(Hour);
-		this.MinuteToRing.add(Minute);
+	public void addAlarmTime(Time time){		
+		this.timesToRing.add(time);	
 	}
 	
-	public void clearAlramTime(int Hour, int Minute){
-		if(Hour>23 || Minute>60 || Minute<0 || Hour<0){
-			throw new RuntimeException("Out of range");
-		}
-		this.HourToRing.remove(Hour);
-		this.MinuteToRing.remove(Minute);
+	public void clearAlramTime(Time time){
+		this.timesToRing.remove(time);
 	}
 
 }
