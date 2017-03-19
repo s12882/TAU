@@ -26,12 +26,12 @@ public class AlarmTest {
 	public void AlarmShouldRingTest() {
 		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
 		
-		alarmRing.addAlarmTime(10);
-		expect(alarmRing.shouldRing(10)).andReturn(true);
+		alarmRing.addAlarmTime(10, 25);
+		expect(alarmRing.shouldRing(10, 25)).andReturn(true);
 		
 		EasyMock.replay(alarmRing);
-		alarmRing.addAlarmTime(10);
-		assertTrue(alarmRing.shouldRing(10));
+		alarmRing.addAlarmTime(10, 25);
+		assertTrue(alarmRing.shouldRing(10, 25));
 		verify(alarmRing);
 	}
 	
@@ -40,12 +40,12 @@ public class AlarmTest {
 	public void AlarmShouldNotRingTest() {
 		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
 		
-		alarmRing.addAlarmTime(10);
-		expect(alarmRing.shouldRing(2)).andReturn(false);
+		alarmRing.addAlarmTime(10, 25);
+		expect(alarmRing.shouldRing(12, 0)).andReturn(false);
 		
 		EasyMock.replay(alarmRing);
-		alarmRing.addAlarmTime(10);
-		assertFalse(alarmRing.shouldRing(2));
+		alarmRing.addAlarmTime(10, 25);
+		assertFalse(alarmRing.shouldRing(12, 0));
 		verify(alarmRing);
 	}
 	
@@ -53,14 +53,14 @@ public class AlarmTest {
 	public void AlarmShouldNotRingTwiceTest() {
 		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
 		
-		alarmRing.addAlarmTime(10);
-		expect(alarmRing.shouldRing(10)).andReturn(true);
-		expect(alarmRing.shouldRing(10)).andReturn(false);
+		alarmRing.addAlarmTime(10, 25);
+		expect(alarmRing.shouldRing(10, 25)).andReturn(true);
+		expect(alarmRing.shouldRing(10, 25)).andReturn(false);
 		
 		EasyMock.replay(alarmRing);
-		alarmRing.addAlarmTime(10);
-		assertTrue(alarmRing.shouldRing(10));
-		assertFalse(alarmRing.shouldRing(10));
+		alarmRing.addAlarmTime(10, 25);
+		assertTrue(alarmRing.shouldRing(10, 25));
+		assertFalse(alarmRing.shouldRing(10, 25));
 		verify(alarmRing);
 	}
 	
@@ -68,17 +68,31 @@ public class AlarmTest {
 	public void AlarmShouldRingTwiceTest() {
 		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
 		
-		alarmRing.addAlarmTime(10);
-		expect(alarmRing.shouldRing(10)).andReturn(true);
-		expect(alarmRing.shouldRing(11)).andReturn(false);
-		expect(alarmRing.shouldRing(10)).andReturn(true);
+		alarmRing.addAlarmTime(10, 25);
+		expect(alarmRing.shouldRing(10, 25)).andReturn(true);
+		expect(alarmRing.shouldRing(11, 40)).andReturn(false);
+		expect(alarmRing.shouldRing(10, 25)).andReturn(true);
 		
 		EasyMock.replay(alarmRing);
-		alarmRing.addAlarmTime(10);
-		assertTrue(alarmRing.shouldRing(10));
-		assertFalse(alarmRing.shouldRing(11));
-		assertTrue(alarmRing.shouldRing(10));
+		alarmRing.addAlarmTime(10, 25);
+		assertTrue(alarmRing.shouldRing(10, 25));
+		assertFalse(alarmRing.shouldRing(11, 40));
+		assertTrue(alarmRing.shouldRing(10, 25));
 		verify(alarmRing);
+	}
+	
+	@Test
+	public void AlarmShouldRingTwiceJUnitTest() {
+		ArrayList<Integer> hour = new ArrayList<Integer>();
+		ArrayList<Integer> minute = new ArrayList<Integer>();
+		
+		AlarmRing alarmRing = new AlarmRingImpl(hour, minute);
+			
+		alarmRing.addAlarmTime(10, 25);
+		assertTrue(alarmRing.shouldRing(10, 25));
+		assertFalse(alarmRing.shouldRing(11, 40));
+		assertTrue(alarmRing.shouldRing(10, 25));
+		
 	}
 	
 }
