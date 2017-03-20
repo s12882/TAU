@@ -68,7 +68,29 @@ public class AlarmTest {
 	}
 	
 	@Test
-	public void AlarmShouldRingTwiceTest() {
+	public void AlarmShouldRingTwiceDifferentTimeTest() {
+		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
+		Time time = new Time(10, 25);
+		Time time1 = new Time(11, 40);
+		Time time2 = new Time(12, 40);
+		
+		alarmRing.addAlarmTime(time);
+		alarmRing.addAlarmTime(time2);
+		expect(alarmRing.shouldRing(time)).andReturn(true);
+		expect(alarmRing.shouldRing(time1)).andReturn(false);
+		expect(alarmRing.shouldRing(time2)).andReturn(true);
+		
+		EasyMock.replay(alarmRing);
+		alarmRing.addAlarmTime(time);
+		alarmRing.addAlarmTime(time2);
+		assertTrue(alarmRing.shouldRing(time));
+		assertFalse(alarmRing.shouldRing(time1));
+		assertTrue(alarmRing.shouldRing(time2));
+		verify(alarmRing);
+	}
+	
+	@Test
+	public void AlarmShouldRingTwiceSameTimeTest() {
 		AlarmRing alarmRing = EasyMock.createMock(AlarmRing.class);
 		Time time = new Time(10, 25);
 		Time time1 = new Time(11, 40);
@@ -79,6 +101,7 @@ public class AlarmTest {
 		expect(alarmRing.shouldRing(time)).andReturn(true);
 		
 		EasyMock.replay(alarmRing);
+		
 		alarmRing.addAlarmTime(time);
 		assertTrue(alarmRing.shouldRing(time));
 		assertFalse(alarmRing.shouldRing(time1));
@@ -91,13 +114,19 @@ public class AlarmTest {
 		ArrayList<Time> timesToRing = new ArrayList<Time>();
 		Time time = new Time(10, 25);
 		Time time1 = new Time(11, 40);
+		Time time2 = new Time(12, 40);
+		Time time3 = new Time(15, 40);
 		
 		AlarmRing alarmRing = new AlarmRingImpl(timesToRing);
 			
 		alarmRing.addAlarmTime(time);
+		alarmRing.addAlarmTime(time1);
+		alarmRing.addAlarmTime(time2);
+		
 		assertTrue(alarmRing.shouldRing(time));
-		assertFalse(alarmRing.shouldRing(time1));
-		assertTrue(alarmRing.shouldRing(time));
+		assertTrue(alarmRing.shouldRing(time1));
+		assertFalse(alarmRing.shouldRing(time3));
+		assertTrue(alarmRing.shouldRing(time2));
 			
 	}
 	

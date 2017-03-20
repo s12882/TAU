@@ -9,6 +9,7 @@ public class AlarmRingImpl implements AlarmRing  {
 	
 	private boolean State = true;
 	public ArrayList<Time> timesToRing;
+	public Time previousRing;
 	
 	
 	public AlarmRingImpl(){
@@ -26,15 +27,15 @@ public class AlarmRingImpl implements AlarmRing  {
 			{
 				if(time == currentTime){
 					
-						if(State == true){
-							State = false;
+						if(previousRing != currentTime){
+							previousRing = currentTime;
 							return true;
 						}else{
 							return false;
 						}
 				}
 			}
-			State = true;
+		previousRing = null;
 	return false;							
 	}
 	
