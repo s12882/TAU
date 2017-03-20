@@ -39,7 +39,10 @@ public class AlarmRingImpl implements AlarmRing  {
 	return false;							
 	}
 	
-	public void addAlarmTime(Time time){		
+	public void addAlarmTime(Time time){
+		if(time.getHour()>24 || time.getHour() < 0 || time.getMinute() > 60 || time.getMinute() < 0 ){
+			throw new RuntimeException("Time out of range");
+		}
 		this.timesToRing.add(time);	
 	}
 	

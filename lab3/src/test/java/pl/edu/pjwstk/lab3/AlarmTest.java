@@ -123,11 +123,21 @@ public class AlarmTest {
 		alarmRing.addAlarmTime(time1);
 		alarmRing.addAlarmTime(time2);
 		
-		assertTrue(alarmRing.shouldRing(time));
-		assertTrue(alarmRing.shouldRing(time1));
-		assertFalse(alarmRing.shouldRing(time3));
-		assertTrue(alarmRing.shouldRing(time2));
+		assertEquals(alarmRing.shouldRing(time), true);
+		assertEquals(alarmRing.shouldRing(time1), true);
+		assertEquals(alarmRing.shouldRing(time3), false);
+		assertEquals(alarmRing.shouldRing(time2), true);
 			
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void WrongTimeEcxepionThownTest() {
+		ArrayList<Time> timesToRing = new ArrayList<Time>();
+		Time time = new Time(10, 65);
+	
+		AlarmRing alarmRing = new AlarmRingImpl(timesToRing);
+			
+		alarmRing.addAlarmTime(time);			
 	}
 	
 }

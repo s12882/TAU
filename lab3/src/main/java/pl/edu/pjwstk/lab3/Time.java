@@ -20,5 +20,13 @@ public class Time {
 		this.HourToRing = HourToRing;
 		this.MinuteToRing= MinuteToRing;		
 	}
+	
+	public int getHour(){
+		return HourToRing;
+	}
+	
+	public int getMinute(){
+		return MinuteToRing;
+	}
 
 }
