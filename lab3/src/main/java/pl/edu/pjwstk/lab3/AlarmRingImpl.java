@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 public class AlarmRingImpl implements AlarmRing  {
 	
+	ITime czas;
 	private boolean State = true;
 	public ArrayList<Time> timesToRing;
 	public Time previousRing;
@@ -22,6 +23,12 @@ public class AlarmRingImpl implements AlarmRing  {
 	
 	public boolean shouldRing(Time currentTime) {
 		
+		if(timesToRing.isEmpty()){
+			throw new RuntimeException("No alarms set");
+		}
+		
+		czas = currentTime;
+		czas.getTime();
 
 		for(Time time : timesToRing)
 			{

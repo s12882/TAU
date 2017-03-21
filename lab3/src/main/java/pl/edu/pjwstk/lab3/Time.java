@@ -2,7 +2,7 @@ package pl.edu.pjwstk.lab3;
 
 import java.util.ArrayList;
 
-public class Time {
+public class Time implements ITime {
 	
 	public int HourToRing;
 	public int MinuteToRing;
@@ -15,18 +15,18 @@ public class Time {
 		this.HourToRing = HourToRing;
 		this.MinuteToRing= MinuteToRing;	
 	}
-	
-	public void setTime(int HourToRing, int MinuteToRing ){	
-		this.HourToRing = HourToRing;
-		this.MinuteToRing= MinuteToRing;		
-	}
-	
+		
 	public int getHour(){
 		return HourToRing;
 	}
 	
 	public int getMinute(){
 		return MinuteToRing;
+	}
+
+	@Override
+	public Time getTime() {
+		return this;
 	}
 
 }
