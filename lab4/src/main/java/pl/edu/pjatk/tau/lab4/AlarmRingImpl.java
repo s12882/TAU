@@ -8,6 +8,7 @@ public class AlarmRingImpl implements AlarmRing  {
 	Time czas;
 	private boolean State = true;
 	public String previousRing;
+	private Time time;
 	
 	ArrayList<Time> timesToRing = new ArrayList<>();
 	
@@ -16,13 +17,18 @@ public class AlarmRingImpl implements AlarmRing  {
 		
 	}
 	
+	public AlarmRingImpl(Time time){
+		this.time = time;
+	}
+	
     public AlarmRingImpl(ArrayList<Time> time){
 		this.timesToRing = time;
 	}
 	
 	public boolean shouldRing() {
 		
-		String currentTime;
+		String currentTime = this.time.getTime();
+		System.out.println(time.getTime());
 		
 		if(timesToRing.isEmpty()){
 			throw new RuntimeException("No alarms set");
@@ -30,12 +36,15 @@ public class AlarmRingImpl implements AlarmRing  {
 		
 		for(Time time : timesToRing)
 			{			
-						if(previousRing != time.getTime()){
-							previousRing = time.getTime();
-							return true;
-						}else{
-							return false;
-						}			
+				if(time.getTime().equals(currentTime)){
+				
+					if(previousRing != currentTime){
+						previousRing = currentTime;
+						return true;
+					}else{
+						continue;
+					}
+				}			
 			}
 		previousRing = null;
 	return false;							

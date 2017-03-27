@@ -4,6 +4,7 @@ public interface Time {
 	
 	public int getHour();
 	public int getMinute();
-	public String getTime();;
+	public String getTime();
+	public void setTime(String time);
 
 }
