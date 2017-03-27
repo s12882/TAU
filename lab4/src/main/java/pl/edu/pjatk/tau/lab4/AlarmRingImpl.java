@@ -22,23 +22,20 @@ public class AlarmRingImpl implements AlarmRing  {
 	
 	public boolean shouldRing() {
 		
-		String currentTime = czas.getTime();
+		String currentTime;
 		
 		if(timesToRing.isEmpty()){
 			throw new RuntimeException("No alarms set");
 		}
 		
 		for(Time time : timesToRing)
-			{
-				if(time.getTime() == currentTime){
-					
-						if(previousRing != currentTime){
-							previousRing = currentTime;
+			{			
+						if(previousRing != time.getTime()){
+							previousRing = time.getTime();
 							return true;
 						}else{
 							return false;
-						}
-				}
+						}			
 			}
 		previousRing = null;
 	return false;							
