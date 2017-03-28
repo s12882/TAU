@@ -21,11 +21,6 @@ import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
-/**
- * Created by tp on 20.03.17.
- */
-
-
 
 @RunWith(AnnotatedEmbedderRunner.class)
 @Configure(storyControls = AlarmRingEmbedder.MyStoryControls.class, storyLoader = AlarmRingEmbedder.MyStoryLoader.class, storyReporterBuilder = AlarmRingEmbedder.MyReportBuilder.class,
