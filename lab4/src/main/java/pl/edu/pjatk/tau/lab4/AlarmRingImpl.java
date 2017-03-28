@@ -28,7 +28,6 @@ public class AlarmRingImpl implements AlarmRing  {
 	public boolean shouldRing() {
 		
 		String currentTime = this.time.getTime();
-		System.out.println(time.getTime());
 		
 		if(timesToRing.isEmpty()){
 			throw new RuntimeException("No alarms set");
