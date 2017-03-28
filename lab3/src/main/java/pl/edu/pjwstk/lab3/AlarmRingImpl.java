@@ -5,12 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
+
 public class AlarmRingImpl implements AlarmRing  {
 	
 	ITime czas;
-	private boolean State = true;
 	public ArrayList<Time> timesToRing;
-	public Time previousRing;
+	public String previousRing;
+	private Time time;
 	
 	
 	public AlarmRingImpl(){
@@ -21,26 +22,25 @@ public class AlarmRingImpl implements AlarmRing  {
 		this.timesToRing = time;
 	}
 	
-	public boolean shouldRing(Time currentTime) {
+public boolean shouldRing() {
+		
+		String currentTime = this.time.getTime();
 		
 		if(timesToRing.isEmpty()){
 			throw new RuntimeException("No alarms set");
 		}
 		
-		czas = currentTime;
-		czas.getTime();
-
 		for(Time time : timesToRing)
-			{
-				if(time == currentTime){
-					
-						if(previousRing != currentTime){
-							previousRing = currentTime;
-							return true;
-						}else{
-							return false;
-						}
-				}
+			{			
+				if(time.getTime().equals(currentTime)){
+				
+					if(previousRing != currentTime){
+						previousRing = currentTime;
+						return true;
+					}else{
+						continue;
+					}
+				}			
 			}
 		previousRing = null;
 	return false;							

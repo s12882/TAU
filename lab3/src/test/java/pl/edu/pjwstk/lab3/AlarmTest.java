@@ -27,49 +27,28 @@ public class AlarmTest {
 	    
 	    
 	    @Test (expected = RuntimeException.class)
-	    public void AlarmshouldRingTest(){
+	    public void AlarmShouldRingTest(){
 	    	
-	    	Time time = EasyMock.createMock(Time.class);
-	    	Time time1 = new Time(9, 30);
-	    	Time time2 = new Time(10, 00);
-	    	
-	        expect(time.getTime()).
-	                andReturn(time1).times(4).
-	                andReturn(time2);
+	    	Time timeToRing = mock(Time.class);
+	    	timeToRing.setTime("10:00");
+	    
+	        expect(time.getTime())
+	        	.andReturn("10:00")
+	        	.andReturn("10:00")
+	        	.andReturn("10:00")
+	        	.andReturn("11:00")
+	        	.andReturn("10:00");
+	              
 	        replay(time);
 
-	        assertEquals(alarm.shouldRing(time1), false);
-	        alarm.addAlarmTime(time1);
-	        assertEquals(alarm.shouldRing(time1), true);
-	        assertEquals(alarm.shouldRing(time1), false);
-	        assertEquals(alarm.shouldRing(time1), false);
-
-	        alarm.addAlarmTime(time2);
-
-	        assertEquals(alarm.shouldRing(time2), true);
+	        assertEquals(alarm.shouldRing(), false);
+	    	alarm.addAlarmTime(timeToRing);
+	        assertEquals(alarm.shouldRing(), true);
+	        assertEquals(alarm.shouldRing(), false);
+	        assertEquals(alarm.shouldRing(), false);
+	        assertEquals(alarm.shouldRing(), true);
+	        
 	        verify(time);
 	    }    
-	    	
-	
-	@Test (expected = RuntimeException.class)
-	public void AlarmShouldNotRingTest() {
-		
-		Time time = EasyMock.createMock(Time.class);
-    	Time time1 = new Time(9, 30);
-    	Time time2 = new Time(10, 00);
-    	
-        expect(time.getTime()).
-                andReturn(time2).andReturn(time2);
-        replay(time);
-
-       
-        alarm.addAlarmTime(time1);
-        assertEquals(alarm.shouldRing(time2), false);
-
-        alarm.addAlarmTime(time2);
-
-        assertEquals(alarm.shouldRing(time2), true);
-        verify(time);
-	}
 	
 }

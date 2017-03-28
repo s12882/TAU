@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public interface AlarmRing {
 	
-	public boolean shouldRing(Time currentTime);
+	public boolean shouldRing();
 	public void addAlarmTime(Time time);
 	public void clearAlramTime(Time time);
 
