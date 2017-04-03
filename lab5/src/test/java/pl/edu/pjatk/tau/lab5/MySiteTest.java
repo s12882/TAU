@@ -56,10 +56,17 @@ public class MySiteTest {
 	@Test
 	public void loginPage() throws InterruptedException{
 		driver.get("http://localhost/pro/WebAdverts/login.php");
-		Thread.sleep(2500);
+		Thread.sleep(1500);
+		
+		WebElement id = driver.findElement(By.name("username"));
+		WebElement pass = driver.findElement(By.name("password"));
+		WebElement login = driver.findElement(By.id("log_but"));
 		
 		assertTrue(driver.getPageSource().contains("Please, type your IDs to log:"));
-		
+		assertNotNull(id);
+		assertNotNull(pass);
+		assertNotNull(login);
+			
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	    assertNotNull(screenshot);
 
