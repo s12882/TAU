@@ -1,4 +1,4 @@
-package com.example.seleniumdemo;
+package pl.edu.pjatk.tau.lab5;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +27,7 @@ public class SomeSiteTest {
 	@BeforeClass
 	public static void driverSetup() {
 		// ChromeDrirver, FireforxDriver, ...
-		System.setProperty("webdriver.chrome.driver", "/Users/kuba/Dev/chromedriver/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/Users/Андрей/Downloads/chromedriver/chromedriver");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
@@ -42,14 +42,14 @@ public class SomeSiteTest {
 	
 	@Test
 	public void polsatPage(){
-		driver.get("http://www.teleman.pl/");
-		driver.findElement(By.linkText("Polsat")).click();
-		element = driver.findElement(By.linkText("Polsat"));
+		driver.get("http://localhost/pro/test.php/");
+		driver.findElement(By.linkText("")).click();
+		element = driver.findElement(By.linkText(""));
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	    assertNotNull(screenshot);
 
 		try {
-			FileUtils.copyFile(screenshot, new File("/Users/kuba/Tmp/polsat.png"));
+			FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/login.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			assertTrue(false);
