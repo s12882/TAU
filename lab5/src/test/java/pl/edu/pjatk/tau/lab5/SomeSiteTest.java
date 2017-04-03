@@ -34,15 +34,15 @@ public class SomeSiteTest {
 
 	@Test
 	public void homePage(){
-		driver.get("http://www.teleman.pl");
+		driver.get("http://localhost/pro/login.php/");
 		
 		element = driver.findElement(By.linkText("Polsat"));
 		assertNotNull(element);
 	}
 	
 	@Test
-	public void polsatPage(){
-		driver.get("http://localhost/pro/test.php/");
+	public void loginPage(){
+		driver.get("http://localhost/pro/login.php/");
 		driver.findElement(By.linkText("")).click();
 		element = driver.findElement(By.linkText(""));
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
