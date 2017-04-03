@@ -41,6 +41,16 @@ public class MySiteTest {
 		
 		element = driver.findElement(By.id("logo"));
 		assertNotNull(element);
+		
+		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		
+		try {
+			FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/MainPage.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	
 	@Test
@@ -49,6 +59,16 @@ public class MySiteTest {
 		Thread.sleep(2500);
 		
 		assertTrue(driver.getPageSource().contains("Please, type your IDs to log:"));
+		
+		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+
+		try {
+			FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/LoginPage.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	
 
