@@ -1,4 +1,4 @@
-package pl.edu.pjatk.tau.jbhsel;
+package pl.edu.pjatk.tau.lab6;
 
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;

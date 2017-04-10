@@ -1,4 +1,4 @@
-package pl.edu.pjatk.tau.jbhsel;
+package pl.edu.pjatk.tau.lab6;
 
 import static org.junit.Assert.*;
 
