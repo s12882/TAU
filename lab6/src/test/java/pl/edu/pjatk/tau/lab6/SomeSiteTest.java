@@ -33,7 +33,7 @@ public class SomeSiteTest {
 		caps.setCapability("takesScreenshot", true);
 		caps.setCapability(
 				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-				"D:/Programs/PhantomJS/phantomjs-2.1.1-windows/bin/phantomjs.exe"
+				"phantomjs.exe"
 		);
 		driver = new PhantomJSDriver(caps);
 	}
@@ -50,14 +50,14 @@ public class SomeSiteTest {
 		assertFalse(driver.getPageSource().contains("Sign in using your social accounts"));
 		File screenshot =
 				((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/bss.1.png"));
+		FileUtils.copyFile(screenshot, new File("log.1.png"));
 		
 		driver.findElement(By.className("navbar-toggle")).click();
 		driver.findElement(By.xpath("//*[@id='sign-in']")).click();
 		
 		screenshot =
 				((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/bss.2.png"));
+		FileUtils.copyFile(screenshot, new File("log.2.png"));
 		
 		
 		driver.findElement(By.name("usernameOrEmail")).sendKeys("whooles");
@@ -65,7 +65,7 @@ public class SomeSiteTest {
 		
 		screenshot =
 				((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/bss.3.png"));
+		FileUtils.copyFile(screenshot, new File("log.3.png"));
 		
 		driver.findElement(By.className("btn-primary")).click();
 		
@@ -74,7 +74,7 @@ public class SomeSiteTest {
 		Thread.sleep(250);
 		screenshot =
 				((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("/Users/Андрей/Tmp/bss.4.png"));
+		FileUtils.copyFile(screenshot, new File("log.4.png"));
 	
 			
 	}
