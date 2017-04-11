@@ -1,7 +1,8 @@
-package pl.edu.pjatk.tau.jbhsel;
+package pl.edu.pjatk.tau.lab6;
 
 import org.jbehave.web.selenium.WebDriverProvider;
-import pl.edu.pjatk.tau.jbhsel.pages.LoginPage;
+
+import pl.edu.pjatk.tau.lab6.pages.LoginPage;
 
 
 public class Pages {

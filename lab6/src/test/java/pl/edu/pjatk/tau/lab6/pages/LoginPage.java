@@ -1,4 +1,4 @@
-package pl.edu.pjatk.tau.jbhsel.pages;
+package pl.edu.pjatk.tau.lab6.pages;
 
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
@@ -18,7 +18,7 @@ public class LoginPage extends WebDriverPage {
 
     public void open() {
     	manage().deleteAllCookies();
-        get("http://localhost:3000/authentication/signin");     
+        get("http://172.17.16.236:3000/authentication/signin");     
     }
 
     public void click(String linkText) {

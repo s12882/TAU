@@ -45,7 +45,7 @@ public class SomeSiteTest {
 
 	@Test
 	public void loginToPage() throws IOException, InterruptedException {
-		driver.get("http://localhost:3000");
+		driver.get("http://172.17.16.236:3000");
 
 		assertFalse(driver.getPageSource().contains("Sign in using your social accounts"));
 		File screenshot =
