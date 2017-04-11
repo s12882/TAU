@@ -36,9 +36,9 @@ public class SiteStories extends JUnitStories {
         System.setProperty("takesScreenshot", "true");
         System.setProperty(
                 PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-                "phantomjs.exe"
+                "/tmp/phantomjs"
         );
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
     }
 
     @Override
