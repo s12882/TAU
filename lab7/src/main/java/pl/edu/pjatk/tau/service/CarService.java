@@ -11,11 +11,10 @@ public class CarService {
 	
 	 private Connection connection;
 
-	    private String url = "jdbc:mysql://localhost:3306/repozetorium?"
+	    private String url = "jdbc:mysql://localhost:3306/jmeater?"
 	          + "user=Andrii&password=sql?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-	    private String createTableCars = "CREATE TABLE " +
-	            "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
+	    private String createTableCars = "CREATE TABLE " + "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
 	            "`price` INT NOT NULL , `description` LONGTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
 	    private PreparedStatement addCarStmt;
@@ -53,6 +52,22 @@ public class CarService {
 	    }
 	    
 	    public Connection getConnection(){return connection;}
+	    
+	    
+	    public int addCar(Car car){
+	        int count = 0;
+	        try{
+	        	addCarStmt.setInt(1,car.getId());
+	        	addCarStmt.setString(2,car.getMark());
+	        	addCarStmt.setInt(3,car.getPrice());
+	        	addCarStmt.setString(4,car.getDescription());
+
+	            count = addCarStmt.executeUpdate();
+	        }catch (SQLException e){
+	            e.printStackTrace();
+	        }
+	        return count;
+	    }
 
 	    public int deleteCar(Car car) throws SQLException{
 	        int count = 0;
@@ -113,6 +128,10 @@ public class CarService {
 	            e.printStackTrace();
 	        }
 	        return cars;
+	    }
+	    
+	    public void delete() throws SQLException{
+	        connection.prepareStatement("DELETE FROM car").executeUpdate();
 	    }
 
 }
