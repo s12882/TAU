@@ -11,7 +11,8 @@ public class CarService {
 	
 	 private Connection connection;
 
-	    private String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	    private String url = "jdbc:mysql://localhost:3306/repozetorium?"
+	          + "user=Andrii&password=sql?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	    private String createTableCars = "CREATE TABLE " +
 	            "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
