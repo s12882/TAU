@@ -11,17 +11,17 @@ public class CarService {
 	
 	 private Connection connection;
 
-	    private String url = "jdbc:mysql://localhost:3306/jmeater?"
-	          + "user=Andrii&password=sql?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	    private String url = "jdbc:mysql://localhost:3306/jmeter?"
+	          + "user=root&password=toor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-	    private String createTableCars = "CREATE TABLE " + "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
+	    private String createTable = "CREATE TABLE " + "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
 	            "`price` INT NOT NULL , `description` LONGTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
-	    private PreparedStatement addCarStmt;
-	    private PreparedStatement deleteCarStmt;
-	    private PreparedStatement editCarStmt;
-	    private PreparedStatement selectCarStmt;
-	    private PreparedStatement getAllCarsStmt;
+	    private PreparedStatement addCar;
+	    private PreparedStatement deleteCar;
+	    private PreparedStatement editCar;
+	    private PreparedStatement selectCar;
+	    private PreparedStatement getAllCars;
 	    private Statement statement;
 	    
 	    public CarService() throws SQLException{
@@ -41,13 +41,13 @@ public class CarService {
 	        }
 
 	        if(!tableExist)
-	            statement.executeUpdate(createTableCars);
+	            statement.executeUpdate(createTable);
 
-	        addCarStmt = connection.prepareStatement("INSERT INTO cars (id,mark,date,content) VALUES (?,?,?,?)");
-	        deleteCarStmt = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
-	        editCarStmt = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
-	        selectCarStmt = connection.prepareStatement("SELECT * FROM `cars` WHERE `id` = ?");
-	        getAllCarsStmt = connection.prepareStatement("SELECT * FROM cars");
+	        addCar = connection.prepareStatement("INSERT INTO cars (id,mark,date,content) VALUES (?,?,?,?)");
+	        deleteCar = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
+	        editCar = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
+	        selectCar = connection.prepareStatement("SELECT * FROM `cars` WHERE `id` = ?");
+	        getAllCars = connection.prepareStatement("SELECT * FROM cars");
 	        
 	    }
 	    
@@ -57,12 +57,12 @@ public class CarService {
 	    public int addCar(Car car){
 	        int count = 0;
 	        try{
-	        	addCarStmt.setInt(1,car.getId());
-	        	addCarStmt.setString(2,car.getMark());
-	        	addCarStmt.setInt(3,car.getPrice());
-	        	addCarStmt.setString(4,car.getDescription());
+	        	addCar.setInt(1,car.getId());
+	        	addCar.setString(2,car.getMark());
+	        	addCar.setInt(3,car.getPrice());
+	        	addCar.setString(4,car.getDescription());
 
-	            count = addCarStmt.executeUpdate();
+	            count = addCar.executeUpdate();
 	        }catch (SQLException e){
 	            e.printStackTrace();
 	        }
@@ -72,8 +72,8 @@ public class CarService {
 	    public int deleteCar(Car car) throws SQLException{
 	        int count = 0;
 	        try{
-	            deleteCarStmt.setInt(1,car.getId());
-	            count =  deleteCarStmt.executeUpdate();
+	        	deleteCar.setInt(1,car.getId());
+	            count =  deleteCar.executeUpdate();
 	        }catch (SQLException e){
 	            e.printStackTrace();
 	        }
@@ -84,11 +84,11 @@ public class CarService {
 	        int count = 0;
 
 	        try{
-	        	editCarStmt.setString(1,car.getMark());
-	        	editCarStmt.setInt(2,car.getPrice());
-	        	editCarStmt.setString(3,car.getDescription());
-	        	editCarStmt.setInt(4,car.getId());
-	            count = editCarStmt.executeUpdate();
+	        	editCar.setString(1,car.getMark());
+	        	editCar.setInt(2,car.getPrice());
+	        	editCar.setString(3,car.getDescription());
+	        	editCar.setInt(4,car.getId());
+	            count = editCar.executeUpdate();
 	        }catch (SQLException e){
 	            e.printStackTrace();
 	        }
@@ -100,8 +100,8 @@ public class CarService {
 	        int count = 0;
 
 	        try{
-	        	selectCarStmt.setInt(1,car.getId());
-	            count = selectCarStmt.executeUpdate();
+	        	selectCar.setInt(1,car.getId());
+	            count = selectCar.executeUpdate();
 
 	        }catch (SQLException e){
 	            e.printStackTrace();
@@ -114,7 +114,7 @@ public class CarService {
 	        List<Car> cars = new ArrayList<Car>();
 
 	        try{
-	            ResultSet rs = getAllCarsStmt.executeQuery();
+	            ResultSet rs = getAllCars.executeQuery();
 	            while (rs.next()){
 	                Car car = new Car();
 	                car.setId(rs.getInt("id"));
