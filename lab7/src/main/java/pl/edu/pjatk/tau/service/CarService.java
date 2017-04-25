@@ -43,7 +43,7 @@ public class CarService {
 	        if(!tableExist)
 	            statement.executeUpdate(createTable);
 
-	        addCar = connection.prepareStatement("INSERT INTO cars (id,mark,date,content) VALUES (?,?,?,?)");
+	        addCar = connection.prepareStatement("INSERT INTO cars (id,mark,price,description) VALUES (?,?,?,?)");
 	        deleteCar = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
 	        editCar = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
 	        selectCar = connection.prepareStatement("SELECT * FROM `cars` WHERE `id` = ?");
