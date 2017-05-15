@@ -31,5 +31,20 @@ public class CarServiceTest {
         carService.delete();
         assertEquals(1, carService.addCar(car));
     }
+    
+    @Test
+    public void deleteCarTest() throws SQLException{
+    	Car car = new Car(55, "Opel", 12000, "Opel Meriva 2006r.");
+    	carService.addCar(car);
+        assertEquals(1,carService.deleteCar(car));
+    }
+    
+    @Test
+    public void editCarTest() throws SQLException{
+    	Car car = new Car(56, "Opel", 12500, "Opel Meriva 2006r.");
+    	carService.addCar(car);
+        assertEquals(1,carService.editCar(car));
+    }
+    
 
 }
