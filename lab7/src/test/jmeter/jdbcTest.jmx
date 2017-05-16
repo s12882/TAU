@@ -30,16 +30,16 @@
           <boolProp name="autocommit">true</boolProp>
           <stringProp name="checkQuery">Select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
-          <stringProp name="dataSource">sqlTest</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://localhost:3306/cars</stringProp>
-          <stringProp name="driver">C:\Users\Андрей\Downloads\apache-jmeter-3.2\apache-jmeter-3.2\lib\mysql-connector-java-3.1.14-bin.jar</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://localhost:3306/cars?</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password">root</stringProp>
+          <stringProp name="password"></stringProp>
           <stringProp name="poolMax">10</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username">admin</stringProp>
+          <stringProp name="username">root</stringProp>
         </JDBCDataSource>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -52,11 +52,18 @@
         </HeaderManager>
         <hashTree/>
         <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.port">3306</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path"></stringProp>
@@ -66,8 +73,8 @@
         </ConfigTestElement>
         <hashTree/>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Remove all" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
-          <stringProp name="query">DELETE FROM Cars;</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
+          <stringProp name="query">DELETE FROM cars;</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="queryTimeout"></stringProp>
@@ -78,9 +85,9 @@
         </JDBCSampler>
         <hashTree/>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Reset AUTO_INCREMENT" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
-          <stringProp name="query">ALTER TABLE Cars id = 1</stringProp>
+          <stringProp name="query">ALTER TABLE cars id = 1</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="variableNames"></stringProp>
@@ -90,9 +97,9 @@
         </JDBCSampler>
         <hashTree/>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Insert" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
-          <stringProp name="query">INSERT INTO Cars (mark, price, description ) VALUES (&quot;Opel&quot;, 12000, &quot;Opel Meriva 2006r.&quot;);</stringProp>
+          <stringProp name="query">INSERT INTO cars (id, mark, price, description) VALUES (55, &quot;Opel&quot;, 12000, &quot;Opel Meriva 2006r.&quot;);</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="variableNames"></stringProp>
@@ -107,8 +114,8 @@
         </LoopController>
         <hashTree>
           <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
-            <stringProp name="dataSource">HSQLPool</stringProp>
-            <stringProp name="query">SELECT * FROM Items</stringProp>
+            <stringProp name="dataSource">MySQLpool</stringProp>
+            <stringProp name="query">SELECT * FROM cars</stringProp>
             <stringProp name="queryArguments"></stringProp>
             <stringProp name="queryArgumentsTypes"></stringProp>
             <stringProp name="queryTimeout"></stringProp>
@@ -146,7 +153,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/item</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:3306/cars</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -171,7 +178,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/item</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:3306/cars</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -184,7 +191,7 @@
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="1126015725">Gniazdko</stringProp>
+              <stringProp name="3417672">opel</stringProp>
               <stringProp name="-1085130059">&quot;id&quot;:11</stringProp>
               <stringProp name="1073374460">&quot;id&quot;:1</stringProp>
               <stringProp name="1073374461">&quot;id&quot;:2</stringProp>
@@ -223,7 +230,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;name&quot;: &quot;gniazdko&quot;, &quot;available&quot; :&quot;11&quot;, &quot;date&quot; : &quot;24.01.2011&quot;}</stringProp>
+                  <stringProp name="Argument.value">{&quot;mark&quot;: &quot;opel&quot;, &quot;price&quot; : &quot;12000&quot;}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -232,7 +239,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/item/${id_value}</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:3306/cars/${id_value}</stringProp>
             <stringProp name="HTTPSampler.method">PUT</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -266,7 +273,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/item/${id_value}</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:3306/cars${id_value}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -276,17 +283,18 @@
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="1061371597">gniazdko</stringProp>
-              <stringProp name="-1071844097">24.01.2011</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
-          <hashTree/>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="3417672">opel</stringProp>
+                <stringProp name="46789743">12000</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller - REST - DELETE" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
@@ -310,7 +318,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/item/${id_value}</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:3306/cars/${id_value}</stringProp>
             <stringProp name="HTTPSampler.method">DELETE</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -323,9 +331,9 @@
           <hashTree/>
         </hashTree>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Validate Delete" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
           <stringProp name="queryType">Select Statement</stringProp>
-          <stringProp name="query">SELECT count(*) from Cars;</stringProp>
+          <stringProp name="query">SELECT count(*) from cars;</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="variableNames"></stringProp>
