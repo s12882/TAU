@@ -301,7 +301,7 @@
           <stringProp name="LoopController.loops">3</stringProp>
         </LoopController>
         <hashTree>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Licznik" enabled="true">
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
             <stringProp name="CounterConfig.start">1</stringProp>
             <stringProp name="CounterConfig.end">3</stringProp>
             <stringProp name="CounterConfig.incr">1</stringProp>
@@ -369,8 +369,8 @@
       </ThreadGroup>
       <hashTree>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Remove all" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
-          <stringProp name="query">DELETE FROM Items;</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
+          <stringProp name="query">DELETE FROM cars;</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="queryTimeout"></stringProp>
@@ -381,9 +381,9 @@
         </JDBCSampler>
         <hashTree/>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Reset AUTO_INCREMENT" enabled="true">
-          <stringProp name="dataSource">HSQLPool</stringProp>
+          <stringProp name="dataSource">MySQLpool</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
-          <stringProp name="query">ALTER TABLE Items IDENTITY = 1</stringProp>
+          <stringProp name="query">ALTER TABLE cars id = 1</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="variableNames"></stringProp>
