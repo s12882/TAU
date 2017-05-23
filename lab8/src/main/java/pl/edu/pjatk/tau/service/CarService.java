@@ -11,9 +11,8 @@ public class CarService {
 	
 	 private Connection connection;
 
-	    private String url = "jdbc:mysql://localhost:3306/jmeter?"
-	          + "user=root&password=toor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
+	 private String url = "jdbc:mysql://localhost:3306/cars?";
+	 
 	    private String createTable = "CREATE TABLE " + "Car( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
 	            "`price` INT NOT NULL , `description` LONGTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
@@ -25,7 +24,7 @@ public class CarService {
 	    private Statement statement;
 	    
 	    public CarService() throws SQLException{
-	        connection = DriverManager.getConnection(url);
+	    	connection = DriverManager.getConnection(url, "root", "");
 	        statement = connection.createStatement();
 
 	        ResultSet rs = connection.getMetaData().getTables(null, null, "%",
@@ -44,8 +43,8 @@ public class CarService {
 	            statement.executeUpdate(createTable);
 
 	        addCar = connection.prepareStatement("INSERT INTO cars (id,mark,price,description) VALUES (?,?,?,?)");
-	        deleteCar = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
-	        editCar = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
+	        editCar = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
+	        deleteCar = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
 	        selectCar = connection.prepareStatement("SELECT * FROM `cars` WHERE `id` = ?");
 	        getAllCars = connection.prepareStatement("SELECT * FROM cars");
 	        
