@@ -12,11 +12,10 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"pl.edu.pjatk.tau.configuration"})
+@ComponentScan({"pl.edu.pjatk.tau"})
 public class RestConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
-        // messageConverters.add(new MappingJackson2HttpMessageConverter());
         super.configureMessageConverters(messageConverters);
     }
 }
