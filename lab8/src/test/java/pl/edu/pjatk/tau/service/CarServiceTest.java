@@ -64,5 +64,30 @@ public class CarServiceTest {
 	        assertNotSame(beforeDelete,afterDelete);
 	        assertNotSame(car.getId(),carService.selectCar(car.getId()));
 	    }
+	 
+	 @Test
+	    public void selectCarTest() throws SQLException {
+	        Car car = new Car(10, "BMW", 15000, "BMW car");
+	        carService.addCar(car);
+	        assertEquals(car.getId(),carService.selectCar(car.getId()).getId());
+	    }
+	 
+	 @Test
+	    public void editCarTest() throws SQLException {
+	        Car cartoEdit = new Car();
+	        
+	        cartoEdit.setId(25);
+	        cartoEdit.setMark(MARK_1);
+	        cartoEdit.setPrice(PRICE_1);
+	        cartoEdit.setDescription(DESC_1);
+	        
+	        Car carEdited = new Car(25,"Opel", 12500, " Test description");
+	        
+	        carService.addCar(cartoEdit);
+	        assertEquals(1,carService.editCar(carEdited));
+	        assertNotSame(cartoEdit.getPrice(),carService.selectCar(carEdited.getId()).getPrice());
+	    }
+	 
+	
 
 }
