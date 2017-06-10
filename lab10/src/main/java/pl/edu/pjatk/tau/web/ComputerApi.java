@@ -27,7 +27,7 @@ public class ComputerApi {
     }
 
     @RequestMapping(
-            value = "/cars",
+            value = "/computers",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -41,7 +41,7 @@ public class ComputerApi {
     }
     
     @RequestMapping(
-            value = "/cars/{id}",
+            value = "/computers/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -55,7 +55,7 @@ public class ComputerApi {
     }
     
     @RequestMapping(
-            value = "/cars/{id}",
+            value = "/computers/{id}",
             method = RequestMethod.DELETE
     )
     @ResponseBody
@@ -69,7 +69,7 @@ public class ComputerApi {
         }
     
     @RequestMapping(
-            value = "/cars/{id}",
+            value = "/computers/{id}",
             method = RequestMethod.PUT
     )
     @ResponseBody
@@ -88,7 +88,7 @@ public class ComputerApi {
     
     @SuppressWarnings("unused")
 	@RequestMapping(
-            value = "cars",
+            value = "computers",
             method = RequestMethod.POST,
             produces = "application/json"
 

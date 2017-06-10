@@ -15,9 +15,9 @@ public class ComputerServiceImpl implements ComputerService {
 	
 	 private Connection connection;
 
-	 private String url = "jdbc:mysql://localhost:3306/cars?";
+	 private String url = "jdbc:mysql://localhost:3306/computers?";
 	 
-	    private String createTable = "CREATE TABLE " + "Car( `id` LONG NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
+	    private String createTable = "CREATE TABLE " + "computers( `id` INT NOT NULL AUTO_INCREMENT , `mark` VARCHAR(350) NOT NULL , " +
 	            "`price` INT NOT NULL , `description` LONGTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
 	    private PreparedStatement addComputer;
@@ -38,7 +38,7 @@ public class ComputerServiceImpl implements ComputerService {
 	        boolean tableExist = false;
 
 	        while (rs.next()){
-	            if("cars".equalsIgnoreCase(rs.getString("TABLE_NAME"))){
+	            if("computers".equalsIgnoreCase(rs.getString("TABLE_NAME"))){
 	                tableExist = true;
 	                break;
 	            }
@@ -47,12 +47,12 @@ public class ComputerServiceImpl implements ComputerService {
 	        if(!tableExist)
 	            statement.executeUpdate(createTable);
 
-	        addComputer = connection.prepareStatement("INSERT INTO cars (id,mark,price,description) VALUES (?,?,?,?)");
-	        editComputer = connection.prepareStatement("UPDATE `cars` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
-	        deleteComputer = connection.prepareStatement("DELETE FROM `cars` WHERE `id` = ?");
-	        selectComputer = connection.prepareStatement("SELECT * FROM `cars` WHERE `id` = ?");
-	        getComputer = connection.prepareStatement("SELECT * FROM `cars` WHERE `mark` = ?");
-	        getAllComps = connection.prepareStatement("SELECT * FROM cars");
+	        addComputer = connection.prepareStatement("INSERT INTO computers (id,mark,price,description) VALUES (?,?,?,?)");
+	        editComputer = connection.prepareStatement("UPDATE `computers` SET `mark`= ?,`price`= ?,`description`=? WHERE `id` = ?");
+	        deleteComputer = connection.prepareStatement("DELETE FROM `computers` WHERE `id` = ?");
+	        selectComputer = connection.prepareStatement("SELECT * FROM `computers` WHERE `id` = ?");
+	        getComputer = connection.prepareStatement("SELECT * FROM `computers` WHERE `mark` = ?");
+	        getAllComps = connection.prepareStatement("SELECT * FROM computers");
 	        
 	    }
 	    
@@ -174,7 +174,7 @@ public class ComputerServiceImpl implements ComputerService {
 	    public int count() throws SQLException {
 	        int count = 0;
 	        try{
-	            ResultSet rs = statement.executeQuery("SELECT count(*) as numberOfCars FROM cars");
+	            ResultSet rs = statement.executeQuery("SELECT count(*) as numberOfCars FROM computers");
 	            while(rs.next()){
 	                count = rs.getInt("numberOfCars");
 	            }
@@ -186,7 +186,7 @@ public class ComputerServiceImpl implements ComputerService {
 	    
 	    public void clear() throws SQLException{
 	        try{
-	            PreparedStatement stmt = connection.prepareStatement("DELETE FROM Cars");
+	            PreparedStatement stmt = connection.prepareStatement("DELETE FROM computers");
 	           if(stmt.executeUpdate() == 1){
 	           }
 	        }catch(SQLException e){

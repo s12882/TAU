@@ -13,7 +13,7 @@ public class ExportDatabase {
 
     public static void main(String[] args) throws Exception {
         Connection jdbcConnection = DriverManager.getConnection(
-                "jdbc:hsqldb:hsql://localhost/comp", "SA", "");
+                "jdbc:mysql://localhost:3306/computers?", "root", "");
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
         FlatXmlDataSet.write(connection.createDataSet(),
