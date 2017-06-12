@@ -1,0 +1,24 @@
+package pl.edu.pjatk.tau.helper;
+
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.xml.FlatDtdDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ExportDatabase {
+
+    public static void main(String[] args) throws Exception {
+        Connection jdbcConnection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/workdb?", "root", "");
+        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
+
+        FlatXmlDataSet.write(connection.createDataSet(),
+                new FileOutputStream("lab10/src/test/resources/databaseDump.xml"));
+        FlatDtdDataSet.write(connection.createDataSet(),
+                new FileOutputStream("lab10/src/test/resources/databaseDump.dtd"));
+    }
+}
