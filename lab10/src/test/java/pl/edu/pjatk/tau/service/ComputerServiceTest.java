@@ -96,7 +96,22 @@ public class ComputerServiceTest extends DBTestCase {
 	@Test
 	public void addingTest() throws Exception {
 		Computer comp = new Computer("Apple", 5400, "Apple Laptop");
+		Computer comp2 = new Computer(22, "Lenovo", 3000, "Lenovo Laptop 2");
+		Computer comp3 = new Computer(23, "Lenovo", 3000, "Lenovo Laptop 3");
+		Computer comp4 = new Computer(24, "Lenovo", 3000, "Lenovo Laptop 4");
+		Computer comp5 = new Computer(25, "Lenovo", 3000, "Lenovo Laptop 5");
+		Computer comp6 = new Computer(27, "MSI", 4700, "MSI Laptop 2");
+		Computer comp7 = new Computer(28, "MSI", 4700, "MSI Laptop 3");
+		Computer comp8 = new Computer(29, "MSI", 4700, "MSI Laptop 4");
+		
 		assertEquals(1, computerService.addComputer(comp));
+		assertEquals(1, computerService.addComputer(comp2));
+		assertEquals(1, computerService.addComputer(comp3));
+		assertEquals(1, computerService.addComputer(comp4));
+		assertEquals(1, computerService.addComputer(comp5));
+		assertEquals(1, computerService.addComputer(comp6));
+		assertEquals(1, computerService.addComputer(comp7));
+		assertEquals(1, computerService.addComputer(comp8));
 					
 		IDataSet dbDataSet = this.getConnection().createDataSet();
 		ITable actualTable = dbDataSet.getTable("computers");
@@ -115,16 +130,23 @@ public class ComputerServiceTest extends DBTestCase {
 		Computer comp4 = new Computer(24, "Lenovo", 3000, "Lenovo Laptop 4");
 		Computer comp5 = new Computer(25, "Lenovo", 3000, "Lenovo Laptop 5");
 		Computer comp6 = new Computer(26, "Lenovo", 3000, "Lenovo Laptop 6");
+		Computer comp7 = new Computer(27, "MSI", 4700, "MSI Laptop 2");
+		Computer comp8 = new Computer(28, "MSI", 4700, "MSI Laptop 3");
+		Computer comp9 = new Computer(29, "MSI", 4700, "MSI Laptop 4");
+	
 		
 		computerService.addComputer(comp2);
 		computerService.addComputer(comp3);
 		computerService.addComputer(comp4);
 		computerService.addComputer(comp5);
 		computerService.addComputer(comp6);
+		computerService.addComputer(comp7);
+		computerService.addComputer(comp8);
+		computerService.addComputer(comp9);
 			
-		assertEquals(1,computerService.deleteComputer(comp6));
-		assertEquals(1,computerService.deleteComputer(comp5));
 		assertEquals(1,computerService.deleteComputer(comp4));
+		assertEquals(1,computerService.deleteComputer(comp5));
+		assertEquals(1,computerService.deleteComputer(comp6));
 
 		IDataSet dbDataSet = this.getConnection().createDataSet();
 		ITable actualTable = dbDataSet.getTable("computers");
@@ -137,11 +159,31 @@ public class ComputerServiceTest extends DBTestCase {
 	
 	@Test
 	public void updateTest() throws Exception{
-		Computer comp = new Computer(1243, "MSI", 4500, "MSI Laptop");
-		Computer edited = new Computer(1243, "MSI", 4000, "MSI Laptop");
+		Computer comp = new Computer(21, "MSI", 4500, "MSI Laptop");
+		Computer comp2 = new Computer(22, "Lenovo", 3000, "Lenovo Laptop 2");
+		Computer comp3 = new Computer(23, "Lenovo", 3000, "Lenovo Laptop 3");
+		Computer comp4 = new Computer(24, "Lenovo", 3000, "Lenovo Laptop 4");
+		Computer comp5 = new Computer(25, "Lenovo", 3000, "Lenovo Laptop 5");
+		Computer comp6 = new Computer(27, "MSI", 4700, "MSI Laptop 2");
+		Computer comp7 = new Computer(28, "MSI", 4700, "MSI Laptop 3");
+		Computer comp8 = new Computer(29, "MSI", 4700, "MSI Laptop 4");
+		
+		Computer edited = new Computer(21, "MSI", 4000, "MSI Laptop");
+		Computer edited2 = new Computer(22, "Lenovo", 3200, "Lenovo Laptop 2");
+		Computer edited3 = new Computer(23, "Lenovo", 3200, "Lenovo Laptop 3");
 		
 		assertEquals(1, computerService.addComputer(comp));
-		assertEquals(1,computerService.editComputer(comp));
+		assertEquals(1, computerService.addComputer(comp2));
+		assertEquals(1, computerService.addComputer(comp3));
+		assertEquals(1, computerService.addComputer(comp4));
+		assertEquals(1, computerService.addComputer(comp5));
+		assertEquals(1, computerService.addComputer(comp6));
+		assertEquals(1, computerService.addComputer(comp7));
+		assertEquals(1, computerService.addComputer(comp8));
+		
+		assertEquals(1,computerService.editComputer(edited));
+		assertEquals(1,computerService.editComputer(edited2));
+		assertEquals(1,computerService.editComputer(edited3));
 
 		IDataSet dbDataSet = this.getConnection().createDataSet();
 		ITable actualTable = dbDataSet.getTable("computers");
