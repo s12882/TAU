@@ -22,16 +22,18 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:beans.xml"})
+@ContextConfiguration({"classpath:/beans.xml"})
 @Rollback
 @Transactional(transactionManager = "txManager")
 @TestExecutionListeners({
-        DependencyInjectionTestExecutionListener.class,
-        DirtiesContextTestExecutionListener.class,
-        TransactionalTestExecutionListener.class,
-        DbUnitTestExecutionListener.class })
+    DependencyInjectionTestExecutionListener.class,
+    DirtiesContextTestExecutionListener.class,
+    TransactionalTestExecutionListener.class,
+    DbUnitTestExecutionListener.class })
 public class ComputerShopTest {
 	
 	@Autowired
@@ -57,15 +59,10 @@ public class ComputerShopTest {
 	            assertionMode = DatabaseAssertionMode.NON_STRICT)
 	 public void editShopTest() {
 		 
-		 Shop shopToEdit = new Shop();
-		 shopToEdit.setName("MediaMarkt");
-		 computerShop.addShop(shopToEdit);
-
-		 	assertEquals("MediaMarkt", computerShop.findShopById(shopToEdit.getId()));
-
-		 	shopToEdit.setName("MediaMarkt Premium");
+		 	Shop shopToEdit = computerShop.findShopByName("Saturn");
+		 	shopToEdit.setName("Saturn Premium");
 		 	computerShop.editShop(shopToEdit);
-	        assertEquals("MediaMarkt",computerShop.findShopByName("MediaMarkt Premium").getName());
+	        assertEquals("Saturn Premium",computerShop.findShopByName("Saturn Premium").getName());
 	       
 	    }
 	 
@@ -75,13 +72,11 @@ public class ComputerShopTest {
 	            assertionMode = DatabaseAssertionMode.NON_STRICT)
 	 public void deleteShopTest() {
 		 
-		 Shop shop = new Shop();
-		 shop.setName("AppleOfficial");
-		 computerShop.addShop(shop);
-	        assertEquals(3,computerShop.getAllShops().size());
-	        assertEquals("AppleOfficial",computerShop.findShopById(2).getName());
+		 	assertEquals(2, computerShop.getAllShops().size());
+
+	        Shop shop = computerShop.findShopByName("Saturn");
 	        computerShop.deleteShop(shop);
-	        assertEquals(2,computerShop.getAllShops().size());
+	        assertEquals(1, computerShop.getAllShops().size());
 	    }
 	 
 	 @Test
@@ -94,15 +89,16 @@ public class ComputerShopTest {
 	 @Test
 	    @DatabaseSetup("/dataset.xml")
 	    public void sellComputerTest(){
-	        assertEquals(2, computerShop.getAllComputers().size());
+	        assertEquals(3, computerShop.getAllComputers().size());
 	        Shop shop = computerShop.findShopById(3);
 	        Computer comp = computerShop.getComputerById(1);
 
 	        Long shopId = shop.getId();
 	        Long compId  = comp.getId();
 
+	        assertEquals(2,shop.getComputers().size());
 	        computerShop.sellComputer(shopId, compId);
-	        assertEquals(0,shop.getComputers().size());
+	        assertEquals(1,shop.getComputers().size());
 	        assertEquals(comp.getPrice(),shop.getRevenue());
 	        
 	    }

@@ -10,7 +10,7 @@
   <name>lab11</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
+ <properties>
     <!-- Shared version number properties -->
     <org.springframework.version>4.3.8.RELEASE</org.springframework.version>
     <org.hibernate.version>3.6.6.Final</org.hibernate.version>
@@ -163,7 +163,7 @@
       <version>5.1.6.Final</version>
     </dependency>
 
-    <!--		<dependency>
+    		<dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${org.hibernate.version}</version>
@@ -177,13 +177,13 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-commons-annotations</artifactId>
                 <version>3.2.0.Final</version>
-            </dependency> -->
+            </dependency> 
     <!-- if we need JPA -->
-    <!-- <dependency>
+    <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-entitymanager</artifactId>
         <version>${org.hibernate.version}</version>
-    </dependency> -->
+    </dependency> 
     <!-- Hibernate uses this logging Facade,
      be careful with the version number ! -->
     <dependency>
@@ -206,12 +206,11 @@
 
     <!-- DB for tests -->
     <dependency>
-      <groupId>org.hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <version>2.3.4</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
+     		 <groupId>mysql</groupId>
+     		 <artifactId>mysql-connector-java</artifactId>
+     		  <version>5.1.39</version>
+     		  <type>jar</type>
+    	</dependency>
 
     <dependency>
       <groupId>org.dbunit</groupId>

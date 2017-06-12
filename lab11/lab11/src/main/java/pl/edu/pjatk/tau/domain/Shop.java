@@ -6,9 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Shop.getAll", query = "Select sh from Shop sh"),
+@NamedQuery(name = "shop.all", query = "Select sh from Shop sh"),
 @NamedQuery(name = "Shop.byId", query = "Select sh from Shop sh where sh.id = :id"),
-@NamedQuery(name="Shop.byName", query = "Select sh from Shop sh where sh.name = :name")
+@NamedQuery(name=  "Shop.byName", query = "Select sh from Shop sh where sh.name = :name")
 })
 public class Shop {
 	
@@ -46,6 +46,11 @@ public class Shop {
 	
 	 public int getRevenue(){
 		 return dayRevenue;
+	 }
+	 
+	 public void setRevenue(int value){
+		 this.dayRevenue = value;
+		 
 	 }
 	 
 	 public void increseRevenue(int value){

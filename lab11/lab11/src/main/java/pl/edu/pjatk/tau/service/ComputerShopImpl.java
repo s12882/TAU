@@ -27,7 +27,7 @@ public class ComputerShopImpl implements ComputerShop {
 
 	@Override
 	public void addShop(Shop shop) {
-		shop.setId(null);
+		
 	        sessionFactory.getCurrentSession().save(shop);
 	        sessionFactory.getCurrentSession().flush();
 		
@@ -52,14 +52,15 @@ public class ComputerShopImpl implements ComputerShop {
 	
 	
 	 public Shop findShopByName(String name){
-		 return (Shop) sessionFactory.getCurrentSession().getNamedQuery("Shop.byName").setString("id", name).uniqueResult();
+		 return (Shop) sessionFactory.getCurrentSession().getNamedQuery("Shop.byName").setString("name", name).uniqueResult();
 		 
 	 }
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Shop> getAllShops() {
-		 return sessionFactory.getCurrentSession().getNamedQuery("Player.getAll").list();
+		 return sessionFactory.getCurrentSession().getNamedQuery("shop.all")
+				 .list();
 	}
 
 	@Override
@@ -101,8 +102,8 @@ public class ComputerShopImpl implements ComputerShop {
 
 	@Override
 	public void sellComputer(Long idShop, Long idComputer) {
-		 Shop shop = sessionFactory.getCurrentSession().get(Shop.class, idShop);
-		 Computer comp = sessionFactory.getCurrentSession().get(Computer.class, idComputer);
+		 Shop shop = (Shop) sessionFactory.getCurrentSession().get(Shop.class, idShop);
+		 Computer comp = (Computer) sessionFactory.getCurrentSession().get(Computer.class, idComputer);
 		 
 		 boolean inStock = false;
 		 for (Computer comps : shop.getComputers()) {
