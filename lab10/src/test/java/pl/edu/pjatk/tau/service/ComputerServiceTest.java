@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.dbunit.*;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.CachedDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.filter.DefaultColumnFilter;
@@ -27,12 +28,11 @@ import java.net.URL;
 
 @RunWith(JUnit4.class)
 public class ComputerServiceTest extends DBTestCase {
-
-
-	ComputerService computerService = new ComputerServiceImpl();
+ 
+	ComputerService computerService;
 	
-
-	public ComputerServiceTest() throws SQLException {
+	public ComputerServiceTest() throws Exception {
+		super("ComputerServiceImpl test");
 	}
 	
 	 protected DatabaseOperation getSetUpOperation() throws Exception {
@@ -40,7 +40,6 @@ public class ComputerServiceTest extends DBTestCase {
 	    }
 
 	    protected DatabaseOperation getTearDownOperation() throws Exception {
-	    	
 	        return DatabaseOperation.TRUNCATE_TABLE;
 	    }
 	
@@ -55,38 +54,17 @@ public class ComputerServiceTest extends DBTestCase {
 	        return ret;
 	}
 	
-	    
-	 @Before
-     public void setUp() throws Exception {
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "com.mysql.jdbc.Driver" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:3306/computers" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "root" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
-
-         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
-
-         FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
-                 ServiceTests.class.getClassLoader().
-                         getResource("dataset-pm.xml").openStream()
-         );
-
-         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-         databaseTester.setDataSet(dataSet);
-         databaseTester.onSetup();
-             Connection jdbcConnection = DriverManager.getConnection(
-                     "jdbc:mysql://localhost:3306/computers?", "root", "");
-             IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-     }
-
-	    @After
+	 @After
 		public void tearDown() throws Exception {	
 			super.tearDown();		
-		}
-	    
-	    @After
-	    public void delteAll() throws SQLException{
-	    	computerService.clear();
-	    }
+		}    
+	
+	 @Before
+     public void setUp() throws Exception {
+         super.setUp();
+         computerService = new ComputerServiceImpl(this.getConnection().getConnection());
+     }
+	   
 	        
 	@Test
 	public void checkConnection() {
