@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <computer id="1" Mark="MSI" Price="4500" Description="MSI Laptop"/>
+    <computer id="2" Mark="Lenovo" Price="3000" Description="Lenovo Laptop"/>
+    <computer id="3" Mark="Apple" Price="5500" Description="Apple Laptop"/>
+    <shop id="3" Name="Saturn" revenue="0" />
+    <shop id="4" Name="AppleOfficial" revenue="0"/>
+    <shop_computer computers_id="1" Shop_id="3" />
+    <shop_computer computers_id="2" Shop_id="3" />
+</dataset>

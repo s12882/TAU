@@ -205,11 +205,14 @@
     </dependency>
 
     <!-- DB for tests -->
-    <dependency>
-     		 <groupId>mysql</groupId>
-     		 <artifactId>mysql-connector-java</artifactId>
-     		  <version>5.1.39</version>
+		
+    	
+    	<dependency>
+     		 <groupId>org.hsqldb</groupId>
+     		 <artifactId>hsqldb</artifactId>
+     		  <version>2.3.4</version>
      		  <type>jar</type>
+     		  <scope>compile</scope>
     	</dependency>
 
     <dependency>
