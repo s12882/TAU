@@ -21,7 +21,7 @@ import org.junit.runners.JUnit4;
 
 import pl.edu.pjatk.tau.domain.Computer;
 import pl.edu.pjatk.tau.service.ComputerServiceImpl;
-import pl.edu.pjatk.tau.service.ServiceTest.ServiceTests;
+import pl.edu.pjatk.tau.service.ServiceTests;
 
 import java.net.URL;
 

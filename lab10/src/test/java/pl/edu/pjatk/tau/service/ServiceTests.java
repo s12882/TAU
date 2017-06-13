@@ -12,18 +12,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.Test;
 
-public class ServiceTest {
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        ComputerServiceTest.class
+})
 
-	@RunWith(Suite.class)
-	@Suite.SuiteClasses({
-	        ComputerServiceTest.class
-	})
-	public class ServiceTests {
-		
+public class ServiceTests {
 	    @BeforeClass
-	    public  void before() throws Exception {
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "com.hsqldb.jdbcDriver" );
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:hsqldb:hsql//localhost:/computers" );
+	    public static void before() throws Exception {
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.hsqldb.jdbcDriver" );
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:hsqldb:hsql://localhost/computers" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "sa" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
 
@@ -42,9 +40,9 @@ public class ServiceTest {
 	    }
 
 	    @AfterClass
-	    public void after() {
+	    public static void after() {
 	    }
 	    
-	}
+	
 }
 
