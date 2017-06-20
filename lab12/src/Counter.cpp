@@ -62,10 +62,7 @@ TEST_CASE( "Ring set Test", "[counter]" ) {
 	count1.setPosition(20);
 	REQUIRE(count1.getPosition() == 20);
 	count1.work();
-	REQUIRE(count1.getPosition() == 2);
-	
-
-	
+	REQUIRE(count1.getPosition() == 2);	
  }
 
 TEST_CASE( "Ring work Test", "[counter]" ) {
@@ -80,7 +77,10 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
 	
 	REQUIRE(count1.ring(18) == false);
 	REQUIRE(count1.ring(2) == true);
+<<<<<<< HEAD
 
+=======
+>>>>>>> b8ab8625d1b0aec688670b5f83cb331e94814454
  }
  
  SCENARIO("Countdown") {
@@ -93,7 +93,11 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
 	count1.setPosition(start);
 	
     GIVEN("Starting point at 'start'") {
+<<<<<<< HEAD
         REQUIRE(count1.getPosition() != 0);
+=======
+        REQUIRE(count1.getPosition() != NULL);
+>>>>>>> b8ab8625d1b0aec688670b5f83cb331e94814454
         WHEN("We start countdown") {
             REQUIRE_NOTHROW(count1.work());
             THEN("It should ring at 'end' value") {
@@ -101,5 +105,9 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> b8ab8625d1b0aec688670b5f83cb331e94814454
 

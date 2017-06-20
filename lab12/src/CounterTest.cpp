@@ -38,6 +38,10 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
 	REQUIRE(count1.ring(18) == false);
 	REQUIRE(count1.ring(2) == true);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8ab8625d1b0aec688670b5f83cb331e94814454
  }
  
  SCENARIO("Countdown") {
@@ -58,4 +62,8 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> b8ab8625d1b0aec688670b5f83cb331e94814454
