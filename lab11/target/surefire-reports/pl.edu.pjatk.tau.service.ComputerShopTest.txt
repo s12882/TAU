@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: pl.edu.pjatk.tau.service.ComputerShopTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.271 sec

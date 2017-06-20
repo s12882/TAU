@@ -12,8 +12,8 @@ import java.sql.DriverManager;
 public class ExportDatabase {
 
     public static void main(String[] args) throws Exception {
-        Connection jdbcConnection = DriverManager.getConnection(
-                "jdbc:hsqldb:hsql//localhost/workdb", "sa", "");
+        Connection jdbcConnection = DriverManager.getConnection("jdbc:hsqldb:hsql//localhost/workdb", "sa", "");
+
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
         FlatXmlDataSet.write(connection.createDataSet(),

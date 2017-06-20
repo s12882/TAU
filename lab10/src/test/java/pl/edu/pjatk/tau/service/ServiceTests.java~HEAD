@@ -11,23 +11,26 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.Test;
+import pl.edu.pjatk.tau.service.ComputerServiceImpl;
 
-public class ServiceTest {
+
 
 	@RunWith(Suite.class)
-	@Suite.SuiteClasses({
-	        ComputerServiceTest.class
-	})
-	public class ServiceTests {
+@Suite.SuiteClasses({
+        ComputerServiceTest.class
+})
+
+public class ServiceTests {
 	    @BeforeClass
-	    public  void before() throws Exception {
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.mysql.jdbcDriver" );
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:3306/computers?" );
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "root" );
+	    public static void before() throws Exception {
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.hsqldb.jdbcDriver" );
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:hsqldb:hsql://localhost/computers" );
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "SA" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
 
-	        ComputerService comp = new ComputerServiceImpl();
+	     
 	        JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
+	        new ComputerServiceImpl(databaseTester.getConnection().getConnection());
 
 	        FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
 	                ServiceTests.class.getClassLoader().
@@ -40,10 +43,8 @@ public class ServiceTest {
 	    }
 
 	    @AfterClass
-	    public void after() {
-	    	
+	    public static void after() {
 	    }
 	    
-	}
+	
 }
-
