@@ -40,7 +40,7 @@ TEST_CASE( "Ring work Test", "[counter]" ) {
 	REQUIRE(count1.ring(18) == false);
 	REQUIRE(count1.ring(2) == true);
 
-	_getch();
+
  }
  
  SCENARIO("Countdown") {
