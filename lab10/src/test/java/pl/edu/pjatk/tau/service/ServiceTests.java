@@ -24,7 +24,7 @@ public class ServiceTests {
 	    @BeforeClass
 	    public static void before() throws Exception {
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.hsqldb.jdbcDriver" );
-	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:hsqldb:hsql://localhost/computers" );
+	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:hsqldb:hsql://localhost/workdb" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "SA" );
 	        System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
 
