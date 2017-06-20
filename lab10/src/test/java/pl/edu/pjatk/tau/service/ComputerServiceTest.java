@@ -20,7 +20,7 @@ import org.junit.runners.JUnit4;
 
 import pl.edu.pjatk.tau.domain.Computer;
 import pl.edu.pjatk.tau.service.ComputerServiceImpl;
-import pl.edu.pjatk.tau.service.ServiceTest.ServiceTests;
+import pl.edu.pjatk.tau.service.ServiceTests;
 
 import java.net.URL;
 
@@ -29,11 +29,11 @@ import java.net.URL;
 public class ComputerServiceTest extends DBTestCase {
 
 
-	ComputerService computerService = new ComputerServiceImpl();
+	ComputerService computerService;
 	
-
-	public ComputerServiceTest() throws SQLException {
-	}
+	public ComputerServiceTest() throws Exception {
+		super("ComputerServiceImpl test");
+}
 	
 	 protected DatabaseOperation getSetUpOperation() throws Exception {
 	        return DatabaseOperation.INSERT;
@@ -58,35 +58,15 @@ public class ComputerServiceTest extends DBTestCase {
 	    
 	 @Before
      public void setUp() throws Exception {
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "com.mysql.jdbc.Driver" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:3306/computers" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "root" );
-         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
-
-         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
-
-         FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
-                 ServiceTests.class.getClassLoader().
-                         getResource("dataset-pm.xml").openStream()
-         );
-
-         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-         databaseTester.setDataSet(dataSet);
-         databaseTester.onSetup();
-             Connection jdbcConnection = DriverManager.getConnection(
-                     "jdbc:mysql://localhost:3306/computers?", "root", "");
-             IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-     }
+         super.setUp();
+         computerService = new ComputerServiceImpl(this.getConnection().getConnection());
+	 }
 
 	    @After
 		public void tearDown() throws Exception {	
 			super.tearDown();		
 		}
-	    
-	    @After
-	    public void delteAll() throws SQLException{
-	    	computerService.clear();
-	    }
+		
 	        
 	@Test
 	public void checkConnection() {
