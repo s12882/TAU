@@ -34,6 +34,7 @@ public:
 		position.y = 0;
 	}
 
+	//Constructor dla objektu dynamicznego
 	MovementComponent(float x, float y, int h, int w, float str) {
 		position.x = x, 
 		position.y = y; 
@@ -42,6 +43,7 @@ public:
 		strenght = str;
 	}
 
+	//Constructor dla objektu statycznego
 	MovementComponent(float x, float y, int h, int w, int sc, bool isSt) {
 		position.x = x,
 		position.y = y;
@@ -77,6 +79,7 @@ public:
 			worldForces->YdragForce = YresistanceConstant * (velocity.y*velocity.y);
 
 
+			//Zmiana kierunku oporu
 			if (velocity.x > 0) {
 				worldForces->XdragForce = (worldForces->XdragForce * -1);
 			}
@@ -104,8 +107,5 @@ public:
 		strenght += value;
 	}
 
-	//void hitObject() {
-	//	impulse = newImpulse;
-	//}
 
 };

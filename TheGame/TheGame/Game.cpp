@@ -56,6 +56,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen) {
 			cout << "Window created..." << endl;
 		}
 
+		//Incjalizacja grafiki
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -116,6 +117,8 @@ void Game::update() {
 	}
 	
 }
+
+//Incjalizacja objektów
 void Game::initilizeEntities() {
 	speedBonus.addComponent<World>();
 	speedBonus.addComponent<MovementComponent>(100.0f, 700.0f, 16, 16, 1, true);
